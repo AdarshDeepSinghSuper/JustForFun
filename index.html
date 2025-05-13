@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyDahej.com - Dowry Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #fff1eb, #ace0f9);
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* Center content vertically */
+            align-items: center;
+            /* Center content horizontally */
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 1rem;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 0.5rem;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin: 0.5rem 0 1rem 0;
+            /* More spacing */
+        }
+
+        button {
+            background-color: #0077cc;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-top: 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #005fa3;
+        }
+
+        .result {
+            margin-top: 2rem;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .disclaimer {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        footer {
+            padding: 1rem;
+            text-align: center;
+            background-color: #f9f9f9;
+            font-size: 0.9rem;
+            color: #555;
+            border-top: 1px solid #ddd;
+            margin-top: auto;
+            /* Keeps the footer at the bottom */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <h1>💸 MyDahej.com</h1>
+            <!-- <p style="text-align:center">This is just for fun! Dowry is illegal and unethical 💔</p> -->
+            <form id="dahejForm">
+                <label>Monthly Income (₹)</label>
+                <input type="number" id="income" required />
+
+                <label>Family Assets (₹)</label>
+                <input type="number" id="assets" required />
+
+                <label>Height (in cm)</label>
+                <input type="number" id="height" required />
+
+                <label>Land Ownership (in acres)</label>
+                <input type="number" id="land" required />
+
+                <label>Education</label>
+                <select id="education">
+                    <option value="10">School pass</option>
+                    <option value="20">Graduate</option>
+                    <option value="30">Post Graduate</option>
+                    <option value="50">IIT/IIM/PhD</option>
+                </select>
+
+                <label>Caste</label>
+                <select id="caste">
+                    <option value="20">General</option>
+                    <option value="15">OBC</option>
+                    <option value="10">SC/ST</option>
+                </select>
+
+                <label>Residence Type</label>
+                <select id="residence">
+                    <option value="10">Rural</option>
+                    <option value="20">Urban</option>
+                </select>
+
+                <button type="submit">💍 Calculate Dahej</button>
+            </form>
+
+            <div class="result" id="result"></div>
+            <div class="disclaimer">Disclaimer: This is just for entertainment. We oppose dowry. 🙏</div>
+        </div>
+
+        <footer>
+            © 2025 MyDahej.com — All rights reserved.<br />
+            <strong>Disclaimer:</strong> This website is intended solely for entertainment and satirical purposes. We do
+            not
+            endorse or support the practice of dowry in any form. Dowry is a punishable offense under Indian law. Our
+            goal
+            is to create awareness through humor while respecting the seriousness of the issue.
+        </footer>
+    </div>
+
+
+    <script>
+        document.getElementById("dahejForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const income = parseInt(document.getElementById("income").value);
+            const assets = parseInt(document.getElementById("assets").value);
+            const height = parseInt(document.getElementById("height").value);
+            const land = parseInt(document.getElementById("land").value);
+            const education = parseInt(document.getElementById("education").value);
+            const caste = parseInt(document.getElementById("caste").value);
+            const residence = parseInt(document.getElementById("residence").value);
+
+            // Simple weighted formula
+            let score = 0;
+            score += income * 0.4;
+            score += assets * 0.2;
+            score += height > 180 ? 100000 : 50000;
+            score += land * 50000;
+            score += education * 10000;
+            score += caste * 5000;
+            score += residence * 3000;
+
+            const formatted = new Intl.NumberFormat("en-IN", {
+                style: "currency",
+                currency: "INR",
+            }).format(score);
+
+            const result = document.getElementById("result");
+            result.innerHTML = `🧮 Your calculated <strong>dahej</strong> value is <span style="color:green">${formatted}</span> 💰`;
+        });
+    </script>
+
+</body>
+
+</html>
